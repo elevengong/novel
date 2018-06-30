@@ -15,6 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::get('/backend/login', 'backend\LoginController@login');
+Route::get('/backend/logout', 'backend\LoginController@logout');
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
