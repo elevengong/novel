@@ -47,12 +47,12 @@ class ServeCommand extends Command
 
         if (defined('HHVM_VERSION')) {
             if (version_compare(HHVM_VERSION, '3.8.0') >= 0) {
-                passthru("{$binary} -m server -v Server.Type=proxygen -v Server.SourceRoot={$base}/ -v Server.IP={$host} -v Server.Port={$port} -v Server.DefaultDocument=server.php -v Server.ErrorDocument404=server.php");
+                passthru("{$binary} -m server -v Server.Type=proxygen -v Server.SourceRoot={$base}/ -v Server.IP={$host} -v Server.Port={$port} -v Server.DefaultDocument=index.php -v Server.ErrorDocument404=index.php");
             } else {
                 throw new Exception("HHVM's built-in server requires HHVM >= 3.8.0.");
             }
         } else {
-            passthru("{$binary} -S {$host}:{$port} {$base}/server.php");
+            passthru("{$binary} -S {$host}:{$port} {$base}/index.php");
         }
     }
 

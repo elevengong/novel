@@ -16,8 +16,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/backend/login', 'backend\LoginController@login');
-Route::get('/backend/logout', 'backend\LoginController@logout');
+
 
 
 
@@ -33,5 +32,10 @@ Route::get('/backend/logout', 'backend\LoginController@logout');
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+    Route::any('/backend/login', 'backend\LoginController@login');
+    Route::get('/backend/logout', 'backend\LoginController@logout');
+    Route::get('/backend/welcome', 'backend\IndexController@welcome');
+    Route::get('/backend/index', 'backend\IndexController@index');
+    Route::get('/backend/code', 'backend\LoginController@code');
+
 });

@@ -9,7 +9,14 @@ use App\Http\Controllers\Controller;
 
 class IndexController extends Controller
 {
-    public function index(){
-        echo "index";
+    public function welcome(){
+        return view('backend.welcome');
+
     }
+
+    public function index(){
+        return view('backend.index');
+
+    }
+
 }
