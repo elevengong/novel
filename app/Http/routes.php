@@ -33,9 +33,15 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['web']], function () {
     Route::any('/backend/login', 'backend\LoginController@login');
-    Route::get('/backend/logout', 'backend\LoginController@logout');
+    Route::get('/backend/code', 'backend\LoginController@code');
+
+});
+
+Route::group(['middleware' => ['web','admin.login']], function () {
     Route::get('/backend/welcome', 'backend\IndexController@welcome');
     Route::get('/backend/index', 'backend\IndexController@index');
-    Route::get('/backend/code', 'backend\LoginController@code');
+    Route::get('/backend/logout', 'backend\LoginController@logout');
+
+    Route::resource('/backend/category', 'backend\CategoryController');
 
 });

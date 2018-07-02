@@ -5,9 +5,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Crypt;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
-//use resources\org\code\vcode;
-//require_once '\resources\org\code\vcode.php';
+
+//require_once 'resources/org/code/svcode.php';
 class LoginController extends Controller
 {
     public function login(Request $request){
@@ -24,8 +25,12 @@ class LoginController extends Controller
             {
                 $data['msg'] = "帐号或者密码或者验证码都不能为空!";
                 return view('backend.login',['data' => $data["msg"]]);
+            }else{
+//                $pdo = DB::connection()->getpdo();
+//                dd($pdo);
+                $admin = DB::table('admin')->where('a_id',1)->get();
+                dd($admin);
             }
-
 
 
 

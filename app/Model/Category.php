@@ -4,9 +4,9 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Admin extends Model
+class Category extends Model
 {
-    protected $table = 'admin';
-    protected $primaryKey = 'a_id';
+    protected $table = 'category';
+    protected $primaryKey = 'c_id';
     protected $timestamps = flase;
 }
