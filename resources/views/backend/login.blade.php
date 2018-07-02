@@ -70,7 +70,7 @@
 
 <script>
   $(function(){
-      layer.msg('error!',{icon:1,time:2000});
+      layer.msg('{{$data}}',{icon:1,time:2000});
   })
 </script>
 

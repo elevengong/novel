@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Crypt;
+use Illuminate\View\View;
 use resources\org\code\vcode;
 //require_once '\resources\org\code\vcode.php';
 class LoginController extends Controller
@@ -18,7 +19,13 @@ class LoginController extends Controller
             $pwd = request()->input('pwd');
             $code = request()->input('code');
 
+            $data = array();
             //验证
+            if(empty($name) or empty($pwd) or empty($code))
+            {
+                $data['msg'] = "帐号或者密码或者验证码都不能为空!";
+                return view('backend.login',['data' => $data["msg"]]);
+            }
 
 
 
@@ -30,7 +37,7 @@ class LoginController extends Controller
             //echo Crypt::encrypt('123963');exit;
             //$str='eyJpdiI6Im1uOUhjZXlPTlNJb2xmTXFObWdDUGc9PSIsInZhbHVlIjoibXU3QmZ3c28wY3ozVnBTYUdIUytWdz09IiwibWFjIjoiOTE3YTBlMWYyMWI5NTMwMzVlMTRlNjcxMzNhYjdlZDQyMWI5OThlOGEzZTA5MTQ2MjAyZmZhZmRhZjk5YzhmNiJ9';
             //echo Crypt::decrypt($str);exit;
-            return View('backend.login');
+            return view('backend.login')->with('data','abc');
         }
 
 
