@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\backend;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Crypt;
 use Illuminate\View\View;
-use resources\org\code\vcode;
+//use resources\org\code\vcode;
 //require_once '\resources\org\code\vcode.php';
 class LoginController extends Controller
 {

@@ -30,7 +30,7 @@ trait SerializesModels
     }
 
     /**
-     * Restore the model after serialization.
+     * Restore the Model after serialization.
      *
      * @return void
      */
