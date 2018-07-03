@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Overtrue\Pinyin\Pinyin;
 
 class CategoryController extends Controller
 {
@@ -19,6 +20,13 @@ class CategoryController extends Controller
 
     //get 添加页面
     public function create(){
+        $pinyin = new Pinyin();
+        $datas = $pinyin->convert('你好吗？顶');
+        foreach ($datas as $data)
+        {
+            echo $data;
+        }
+        exit;
         return view('backend.categoryadd');
     }
 
