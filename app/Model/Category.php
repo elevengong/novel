@@ -8,5 +8,5 @@ class Category extends Model
 {
     protected $table = 'category';
     protected $primaryKey = 'c_id';
-    protected $timestamps = flase;
+    public $timestamps = 'flase';
 }

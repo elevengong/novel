@@ -28,8 +28,7 @@
 <body>
 <header class="navbar-wrapper">
 	<div class="navbar navbar-fixed-top">
-		<div class="container-fluid cl"> <a class="logo navbar-logo f-l mr-10 hidden-xs" data-href="{{url('/backend/welcome')}}" href="javascript:void(0)">欢迎页面</a>
-			<span class="logo navbar-slogan f-l mr-10 hidden-xs">v3.1</span>
+		<div class="container-fluid cl"> <a class="logo navbar-logo f-l mr-10 hidden-xs" href="{{url('/backend/index')}}">欢迎页面</a>
 			<a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
 			<nav class="nav navbar-nav">
 				<ul class="cl">
@@ -45,16 +44,14 @@
 		</nav>
 		<nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
 			<ul class="cl">
-				<li>超级管理员</li>
+				<li>管理员</li>
 				<li class="dropDown dropDown_hover">
-					<a href="#" class="dropDown_A">admin <i class="Hui-iconfont">&#xe6d5;</i></a>
+					<a href="#" class="dropDown_A">{{session('admin')}} <i class="Hui-iconfont">&#xe6d5;</i></a>
 					<ul class="dropDown-menu menu radius box-shadow">
-						<li><a href="javascript:;" onClick="myselfinfo()">个人信息</a></li>
-						<li><a href="#">切换账户</a></li>
-						<li><a href="#">退出</a></li>
+						<li><a href="{{url('/backend/login')}}">切换账户</a></li>
+						<li><a href="{{url('/backend/logout')}}">退出</a></li>
 				</ul>
 			</li>
-				<li id="Hui-msg"> <a href="#" title="消息"><span class="badge badge-danger">1</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>
 				<li id="Hui-skin" class="dropDown right dropDown_hover"> <a href="javascript:;" class="dropDown_A" title="换肤"><i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i></a>
 					<ul class="dropDown-menu menu radius box-shadow">
 						<li><a href="javascript:;" data-val="blue" title="默认（黑色）">默认（黑色）</a></li>
@@ -73,10 +70,10 @@
 <aside class="Hui-aside">
 	<div class="menu_dropdown bk_2">
 		<dl id="menu-article">
-			<dt><i class="Hui-iconfont">&#xe616;</i> 资讯管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt><i class="Hui-iconfont">&#xe616;</i> 小说管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="{{url('/backend/welcome')}}" data-title="资讯管理" href="javascript:void(0)">资讯管理</a></li>
+					<li><a data-href="{{url('/backend/category')}}" data-title="分类管理" href="javascript:void(0)">分类管理</a></li>
 			</ul>
 		</dd>
 	</dl>

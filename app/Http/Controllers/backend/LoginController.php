@@ -7,41 +7,57 @@ use App\Http\Controllers\Controller;
 use Crypt;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
+use App\Model\Admin;
 
 //require_once 'resources/org/code/svcode.php';
 class LoginController extends Controller
 {
     public function login(Request $request){
-
         if($request->isMethod('post'))
         {
             $name = request()->input('name');
             $pwd = request()->input('pwd');
             $code = request()->input('code');
-
             $data = array();
             //验证
-            if(empty($name) or empty($pwd) or empty($code))
+            if(!empty($name) or !empty($pwd) or !empty($code))
             {
-                $data['msg'] = "帐号或者密码或者验证码都不能为空!";
-                return view('backend.login',['data' => $data["msg"]]);
+                if(strtolower($code) == strtolower(session('code')))
+                {
+                    $result = Admin::where('name',$name)->first();;
+                    if(!empty($result))
+                    {
+                        //对比密码
+                        $admin_array = $result->toArray();
+                        $store_pwd = Crypt::decrypt($admin_array['pwd']);
+                        if($store_pwd == $pwd)
+                        {
+                            session(['admin' => $name]);
+                            return redirect('/backend/index');
+
+                        }else{
+                            $data['msg'] = "帐号或者密码错误!";
+                            return view('backend.login',['msg' => $data['msg']]);
+                        }
+                    }else{
+                        $data['msg'] = "帐号或者密码错误!";
+                        return view('backend.login',['msg' => $data['msg']]);
+                    }
+                }else{
+                    $data['msg'] = "验证码错误!";
+                    return view('backend.login',['msg' => $data['msg']]);
+                }
+
             }else{
+                $data['msg'] = "帐号或者密码或者验证码都不能为空!";
+                return view('backend.login',['msg' => $data['msg']]);
 //                $pdo = DB::connection()->getpdo();
 //                dd($pdo);
-                $admin = DB::table('admin')->where('a_id',1)->get();
-                dd($admin);
+//                $admin = DB::table('admin')->where('a_id',1)->get();
+//                dd($admin);
             }
-
-
-
-
-
-
         }else{
-            //echo Crypt::encrypt('123963');exit;
-            //$str='eyJpdiI6Im1uOUhjZXlPTlNJb2xmTXFObWdDUGc9PSIsInZhbHVlIjoibXU3QmZ3c28wY3ozVnBTYUdIUytWdz09IiwibWFjIjoiOTE3YTBlMWYyMWI5NTMwMzVlMTRlNjcxMzNhYjdlZDQyMWI5OThlOGEzZTA5MTQ2MjAyZmZhZmRhZjk5YzhmNiJ9';
-            //echo Crypt::decrypt($str);exit;
-            return view('backend.login')->with('data','abc');
+            return view('backend.login');
         }
 
 
@@ -49,7 +65,8 @@ class LoginController extends Controller
     }
 
     public function logout(){
-        echo "logout";
+        session(['admin' => '']);
+        return redirect('/backend/login');
     }
 
     public function code(){

@@ -68,12 +68,15 @@
 <script type="text/javascript" src="{{asset('/resources/views/backend/lib/layer/2.4/layer.js')}}"></script>
 <script type="text/javascript" src="{{asset('/resources/views/backend/static/h-ui/js/H-ui.min.js')}}"></script>
 
+@if(isset($msg))
+  {
 <script>
   $(function(){
-      layer.msg('{{$data}}',{icon:1,time:2000});
+      layer.msg('{{$msg}}',{icon:1,time:2000});
   })
 </script>
-
+}
+@endif
 
 </body>
 </html>

@@ -8,5 +8,5 @@ class Admin extends Model
 {
     protected $table = 'admin';
     protected $primaryKey = 'a_id';
-    protected $timestamps = flase;
+    public $timestamps = 'flase';
 }
