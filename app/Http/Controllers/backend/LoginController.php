@@ -24,12 +24,12 @@ class LoginController extends Controller
             {
                 if(strtolower($code) == strtolower(session('code')))
                 {
-                    $result = Admin::where('name',$name)->first();;
+                    $result = Admin::where('name',$name)->get()->toArray();
+
                     if(!empty($result))
                     {
                         //对比密码
-                        $admin_array = $result->toArray();
-                        $store_pwd = Crypt::decrypt($admin_array['pwd']);
+                        $store_pwd = Crypt::decrypt($result['0']['pwd']);
                         if($store_pwd == $pwd)
                         {
                             session(['admin' => $name]);

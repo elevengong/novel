@@ -31,10 +31,8 @@
 						<td>{{$category['priority']}}</td>
 						<td class="td-status">@if($category['show']==1) 显示 @else 不显示 @endif</td>
 						<td class="td-manage">
-							<a style="text-decoration:none" onClick="product_stop(this,'10001')" href="javascript:;" title="下架">
-								<i class="Hui-iconfont">&#xe6de;</i></a>
-							<a style="text-decoration:none" class="ml-5" onClick="product_edit('产品编辑','product-add.html','10001')" href="javascript:;" title="编辑">
-								<i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="product_del(this,'10001')" href="javascript:;" title="删除">
+							<a style="text-decoration:none" class="ml-5" onClick="product_edit('分类编辑','/backend/category/{{$category['c_id']}}/edit')" href="javascript:;" title="编辑">
+								<i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" onClick="product_del(this,'{{$category['c_id']}}')" href="javascript:;" title="删除">
 								<i class="Hui-iconfont">&#xe6e2;</i></a>
 						</td>
 					</tr>
@@ -76,35 +74,8 @@
             layer.full(index);
         }
 
-		/*产品-下架*/
-        function product_stop(obj,id){
-            layer.confirm('确认要下架吗？',function(index){
-                $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="product_start(this,id)" href="javascript:;" title="发布"><i class="Hui-iconfont">&#xe603;</i></a>');
-                $(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已下架</span>');
-                $(obj).remove();
-                layer.msg('已下架!',{icon: 5,time:1000});
-            });
-        }
-
-		/*产品-发布*/
-        function product_start(obj,id){
-            layer.confirm('确认要发布吗？',function(index){
-                $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="product_stop(this,id)" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>');
-                $(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已发布</span>');
-                $(obj).remove();
-                layer.msg('已发布!',{icon: 6,time:1000});
-            });
-        }
-
-		/*产品-申请上线*/
-        function product_shenqing(obj,id){
-            $(obj).parents("tr").find(".td-status").html('<span class="label label-default radius">待审核</span>');
-            $(obj).parents("tr").find(".td-manage").html("");
-            layer.msg('已提交申请，耐心等待审核!', {icon: 1,time:2000});
-        }
-
 		/*产品-编辑*/
-        function product_edit(title,url,id){
+        function product_edit(title,url){
             var index = layer.open({
                 type: 2,
                 title: title,
@@ -117,15 +88,16 @@
         function product_del(obj,id){
             layer.confirm('确认要删除吗？',function(index){
                 $.ajax({
-                    type: 'POST',
-                    url: '',
+                    type: 'delete',
+                    url: '/backend/category/'+ id,
                     dataType: 'json',
+                    headers: { 'X-CSRF-TOKEN' : '{{ csrf_token() }}' },
                     success: function(data){
                         $(obj).parents("tr").remove();
-                        layer.msg('已删除!',{icon:1,time:1000});
+                        layer.msg(data.msg,{icon:1,time:1000});
                     },
                     error:function(data) {
-                        console.log(data.msg);
+                        layer.msg('删除失败',{icon:1,time:1000});
                     },
                 });
             });
