@@ -1,7 +1,10 @@
 @extends('backend.layout')
 @section('content')
 	<div class="page-container">
-		<form action="/backend/category/{{$data['c_id']}}" method="put" class="form form-horizontal" id="form-user-add">
+		<form action="/backend/category/{{$data['c_id']}}" method="post" class="form form-horizontal" id="form-user-add">
+			<input type="hidden" name="_method" value="put">
+			//用了上面这一行就可以用put方法了
+
 			{{csrf_field()}}
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2">

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Overtrue\Pinyin\Pinyin;
+use Symfony\Component\Console\Input\InputArgument;
 
 class CategoryController extends Controller
 {
@@ -82,7 +83,9 @@ class CategoryController extends Controller
 
     //put 修改的操作 backend/category/{category}
     public function update($c_id){
-        echo "sfsdf";
+        //echo "sfsdf";
+        $Input = Input::except('_token','_method');
+        $reslut = Category::where('c_id',$c_id)->update($Input);
 
     }
 
