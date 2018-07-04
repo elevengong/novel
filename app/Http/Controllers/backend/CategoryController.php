@@ -74,6 +74,7 @@ class CategoryController extends Controller
 
     //get 修改的页面 backend/category/{category}/edit
     public function edit($c_id){
+        //Category::find($c_id);
         $data = Category::where('c_id',$c_id)->get()->toArray();
         return view('backend.categoryedit',['data' => $data['0']]);
 
