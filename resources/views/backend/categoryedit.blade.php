@@ -3,15 +3,13 @@
 	<div class="page-container">
 		<form action="/backend/category/{{$data['c_id']}}" method="post" class="form form-horizontal" id="form-user-add">
 			<input type="hidden" name="_method" value="put">
-			//用了上面这一行就可以用put方法了
-
 			{{csrf_field()}}
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2">
 					<span class="c-red">*</span>
 					分类名称：</label>
 				<div class="formControls col-xs-6 col-sm-6">
-					<input type="text" class="input-text" value="{{$data['c_name']}}" placeholder="" name="name">
+					<input type="text" class="input-text" value="{{$data['c_name']}}" placeholder="" name="c_name">
 				</div>
 			</div>
 			<div class="row cl">
@@ -37,13 +35,13 @@
 				<label class="form-label col-xs-4 col-sm-2">
 					关键词：</label>
 				<div class="formControls col-xs-6 col-sm-6">
-					<input type="text" class="input-text" value="{{$data['c_keyword']}}" placeholder="" name="keyword">
+					<input type="text" class="input-text" value="{{$data['c_keyword']}}" placeholder="" name="c_keyword">
 				</div>
 			</div>
 			<div class="row cl">
 				<label class="form-label col-xs-4 col-sm-2">描述：</label>
 				<div class="formControls col-xs-6 col-sm-6">
-					<textarea name="description" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入10个字符">{{$data['c_description']}}</textarea>
+					<textarea name="c_description" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入10个字符">{{$data['c_description']}}</textarea>
 				</div>
 			</div>
 			<div class="row cl">
@@ -53,15 +51,43 @@
 			</div>
 		</form>
 	</div>
+	<!--_footer 作为公共模版分离出去-->
+	<script type="text/javascript" src="{{asset('/resources/views/backend/lib/jquery/1.9.1/jquery.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('/resources/views/backend/lib/layer/2.4/layer.js')}}"></script>
+	<script type="text/javascript" src="{{asset('/resources/views/backend/static/h-ui/js/H-ui.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('/resources/views/backend/static/h-ui.admin/js/H-ui.admin.js')}}"></script> <!--/_footer 作为公共模版分离出去-->
 
-	@if(isset($msg))
-		{
-		<script>
-            $(function(){
-                layer.msg('{{$msg}}',{icon:1,time:2000});
-            })
-		</script>
-		}
+	<!--请在下方写此页面业务相关的脚本-->
+	<script type="text/javascript" src="{{asset('/resources/views/backend/lib/datatables/1.10.0/jquery.dataTables.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('/resources/views/backend/lib/laypage/1.2/laypage.js')}}"></script>
+
+
+	@if(!empty(session('data')))
+		@if(session('data')['status'] == 1)
+			<script>
+                $(function(){
+                    layer.msg("{{session('data')['msg']}}", {
+                        icon: 1,
+                        time: 2000,
+                        end: function () {
+                            var index = parent.layer.getFrameIndex(window.name);
+                            window.parent.location.reload()
+                            parent.layer.close(index);
+                        }
+                    });
+                })
+			</script>
+		@else
+			<script>
+                $(function(){
+                    layer.msg('{{session('data')['msg']}}',{icon:1,time:2000});
+                })
+			</script>
+
+		@endif
+
 	@endif
+
+
 
 @endsection

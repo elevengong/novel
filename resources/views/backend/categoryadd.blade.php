@@ -50,15 +50,42 @@
 			</div>
 		</form>
 	</div>
+	<!--_footer 作为公共模版分离出去-->
+	<script type="text/javascript" src="{{asset('/resources/views/backend/lib/jquery/1.9.1/jquery.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('/resources/views/backend/lib/layer/2.4/layer.js')}}"></script>
+	<script type="text/javascript" src="{{asset('/resources/views/backend/static/h-ui/js/H-ui.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('/resources/views/backend/static/h-ui.admin/js/H-ui.admin.js')}}"></script> <!--/_footer 作为公共模版分离出去-->
 
-	@if(isset($msg))
-		{
-		<script>
-            $(function(){
-                layer.msg('{{$msg}}',{icon:1,time:2000});
-            })
-		</script>
-		}
+	<!--请在下方写此页面业务相关的脚本-->
+	<script type="text/javascript" src="{{asset('/resources/views/backend/lib/datatables/1.10.0/jquery.dataTables.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('/resources/views/backend/lib/laypage/1.2/laypage.js')}}"></script>
+
+	@if(isset($data))
+
+		@if($data['status'] == 1)
+			<script>
+                $(function(){
+                    layer.msg("{{$data['msg']}}", {
+                        icon: 1,
+                        time: 1000,
+                        end: function () {
+                            var index = parent.layer.getFrameIndex(window.name);
+                            window.parent.location.reload()
+                            parent.layer.close(index);
+                        }
+                    });
+                })
+			</script>
+		@endif
+
+		@if($data['status'] == 0)
+			<script>
+                $(function(){
+                    layer.msg('{{$data['msg']}}',{icon:1,time:2000});
+                })
+			</script>
+		@endif
+
 	@endif
 
 @endsection

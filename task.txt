@@ -1,5 +1,4 @@
 1.研究mysql的全文搜索和索引
-2.看看视频别人的update的put方法是怎样处理的,ajax?
 上网查一下，慢查询的代码，在mysql里运行一下，看看有没有这种情况
 show status like 'slow_quenies';
 默认情况下，大于10秒就算是慢查询，把情查询改为1秒
@@ -11,3 +10,6 @@ show status like 'com_update';
 show status like 'com_insert';
 show status like 'com_delete';
 show status like 'com_select';
+
+admin密码
+eyJpdiI6IkRhTVYrWWNJdDQ3dEtzT3JzaVB4SEE9PSIsInZhbHVlIjoiWk5scTArZGQ3ODgrbnh4TXFWUU0rQT09IiwibWFjIjoiZGJiYmFkNTFhNmUxNWUzMDJkY2MzMzI0YWUxOWQ3OTdlM2JlOGZjZDYxNTQ4NzQzYmI2Y2IyNGNkMzRjNjBhNCJ9

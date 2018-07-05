@@ -44,4 +44,6 @@ Route::group(['middleware' => ['web','admin.login']], function () {
 
     Route::resource('/backend/category', 'backend\CategoryController');
 
+    Rote::get('/backend/author','backend\AuthorController@index');
+
 });
