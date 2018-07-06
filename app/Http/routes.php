@@ -31,6 +31,7 @@ Route::get('/', function () {
 |
 */
 
+//--------------------------------------start后台----------------------------------
 Route::group(['middleware' => ['web']], function () {
     Route::any('/backend/login', 'backend\LoginController@login');
     Route::get('/backend/code', 'backend\LoginController@code');
@@ -44,6 +45,21 @@ Route::group(['middleware' => ['web','admin.login']], function () {
 
     Route::resource('/backend/category', 'backend\CategoryController');
 
-    Rote::get('/backend/author','backend\AuthorController@index');
+    Route::any('/backend/author', 'backend\AuthorController@index');
+    Route::any('/backend/author/{author_id}/edit', 'backend\AuthorController@edit')->where(['author_id' => '[0-9]+']);
+
+    Route::any('/backend/novel', 'backend\NovelController@index');
+    Route::any('/backend/novel/{novel_id}/edit', 'backend\NovelController@edit')->where(['novel_id' => '[0-9]+']);
+
+    //测试路由
+    Route::get('/backend/novel/{name}_{id}.html','backend\NovelController@idbyname')->where(['name' => '[a-z]+', 'id' => '[0-9]+']);
+
+
 
 });
+
+
+
+
+
+//--------------------------------------end后面----------------------------------

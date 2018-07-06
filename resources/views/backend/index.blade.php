@@ -74,6 +74,8 @@
 			<dd>
 				<ul>
 					<li><a data-href="{{url('/backend/category')}}" data-title="分类管理" href="javascript:void(0)">分类管理</a></li>
+					<li><a data-href="{{url('/backend/author')}}" data-title="作者管理" href="javascript:void(0)">作者管理</a></li>
+					<li><a data-href="{{url('/backend/novel')}}" data-title="小说管理" href="javascript:void(0)">小说管理</a></li>
 			</ul>
 		</dd>
 	</dl>

@@ -12,6 +12,20 @@ show status like 'com_delete';
 show status like 'com_select';
 
 如何把慢查询记录到日志里，要设置
+注意：每次重启mysql,慢查询时间就会变回默认10秒
+
+全文索引不支持中文,但可以安装插件来支持中文全部索引
+mysql5.6之后,全文索引可以支持innodb
+
+外键不能用于myisam
 
 
-现在的mysql转服务器后mysql的索引要不要重建索引？这个要研究
+小说网要有繁体版的
+
+notice!!!晚上去把9527xs.com这个域名给注册了
+今晚要把mysql那视频看完
+
+2.这周末要重新看一次ci框架和看一下jquery
+
+3.这周末要把laravel上传图片和百度编辑器搞好
+

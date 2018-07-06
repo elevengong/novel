@@ -24,7 +24,7 @@
 					@foreach($categorys as $category)
 					<tr class="text-c va-m">
 						<td>{{$category['c_id']}}</td>
-						<td><a onClick="product_show('{{$category['c_name']}}','product-show.html','10001')" href="javascript:;">{{$category['c_name']}}</a></td>
+						<td>{{$category['c_name']}}</td>
 						<td class="text-l">{{$category['c_name_pinyin']}}</td>
 						<td class="text-l">{{$category['c_keyword']}}</td>
 						<td class="text-l">{{$category['c_description']}}</td>
