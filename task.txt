@@ -17,6 +17,8 @@ show status like 'com_select';
 全文索引不支持中文,但可以安装插件来支持中文全部索引
 mysql5.6之后,全文索引可以支持innodb
 
+char,varchar等字符类型作为索引时，写sql语句时，对应索引的字段要加上单引号
+
 外键不能用于myisam
 
 小说网要有繁体版的
@@ -24,7 +26,7 @@ mysql5.6之后,全文索引可以支持innodb
 notice!!!晚上去把9527xs.com这个域名给注册了
 今晚要把mysql那视频看完
 
-2.这周末要重新看一次ci框架和看一下jquery
+2.这周末要重新看一次laravel框架和有时间就看一下jquery
 
 3.这周末要把laravel上传图片和百度编辑器搞好
 
