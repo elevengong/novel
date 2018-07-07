@@ -19,7 +19,6 @@ mysql5.6之后,全文索引可以支持innodb
 
 外键不能用于myisam
 
-
 小说网要有繁体版的
 
 notice!!!晚上去把9527xs.com这个域名给注册了
