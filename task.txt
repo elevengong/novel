@@ -23,10 +23,12 @@ char,varchar等字符类型作为索引时，写sql语句时，对应索引的�
 
 小说网要有繁体版的
 
-notice!!!晚上去把9527xs.com这个域名给注册了
-今晚要把mysql那视频看完
 
-2.这周末要重新看一次laravel框架和有时间就看一下jquery
 
-3.这周末要把laravel上传图片和百度编辑器搞好
+今晚做个个后台
+1.login要加ip和时间
+2.后台管理列表（只有amdin用户才能看得到和操作）
+3.用户前台在前台login的用户表号list（ip,logintime）
+4.activity列表(加个控制，以后就可以方便加活动)，每个活动给一个id，用id来区别，活动有时间(create_at,update_at),只有admin可以添加
+5.用户参加活动的列表log(create_at,update_at,ip)
 
