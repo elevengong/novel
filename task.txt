@@ -27,8 +27,8 @@ char,varchar等字符类型作为索引时，写sql语句时，对应索引的�
 
 今晚做个个后台
 1.login要加ip和时间
-2.后台管理列表（只有amdin用户才能看得到和操作）
+2.后台管理列表（只有amdin用户才能看得到和操作）?
 3.用户前台在前台login的用户表号list（ip,logintime）
-4.activity列表(加个控制，以后就可以方便加活动)，每个活动给一个id，用id来区别，活动有时间(create_at,update_at),只有admin可以添加
+4.activity列表(加个控制，以后就可以方便加活动)，每个活动给一个id，用id来区别，活动有时间(create_at,update_at),只有admin可以添加（只有admin这个用户可以新建）
 5.用户参加活动的列表log(create_at,update_at,ip)
 
