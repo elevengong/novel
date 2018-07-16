@@ -19,6 +19,7 @@
                         <th width="60">图片</th>
                         <th width="60">作者</th>
                         <th width="40">作者名拼音</th>
+                        <th width="40">状态</th>
                         <th width="100">介绍</th>
                         <th width="100">关键词</th>
                         <th width="100">描述</th>
@@ -30,9 +31,10 @@
                     @foreach($datas->items() as $data)
                         <tr class="text-c va-m">
                             <td>{{$data->author_id}}</td>
-                            <td class="text-l">{{$data->author_cover_path}}</td>
+                            <td class="text-l">@if(!empty($data->author_cover_path))<img src="{{$data->author_cover_path}}" width="50px">@endif</td>
                             <td><a onClick="product_show('{{$data->author}}','product-show.html','10001')" href="javascript:;">{{$data->author}}</a></td>
                             <td class="text-l">{{$data->author_pinyin}}</td>
+                            <td class="text-l">@if($data->status)显示@else不显示@endif</td>
                             <td class="text-l">{{$data->author_intro}}</td>
                             <td class="text-l">{{$data->author_keyword}}</td>
                             <td class="text-l">{{$data->author_description}}</td>

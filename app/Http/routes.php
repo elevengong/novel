@@ -38,10 +38,13 @@ Route::group(['middleware' => ['web']], function () {
 
 });
 
+//login后才可以上的
 Route::group(['middleware' => ['web','admin.login']], function () {
     Route::get('/backend/welcome', 'backend\IndexController@welcome');
     Route::get('/backend/index', 'backend\IndexController@index');
     Route::get('/backend/logout', 'backend\LoginController@logout');
+
+    Route::post('/backend/changeadminpassword', 'backend\IndexController@changeAdminPassword');
 
     Route::resource('/backend/category', 'backend\CategoryController');
 
@@ -51,8 +54,14 @@ Route::group(['middleware' => ['web','admin.login']], function () {
     Route::any('/backend/novel', 'backend\NovelController@index');
     Route::any('/backend/novel/{novel_id}/edit', 'backend\NovelController@edit')->where(['novel_id' => '[0-9]+']);
 
+    //上传图片
+    Route::any('/backend/uploadphoto/{type}','backend\BackendController@uploadphoto')->where(['type' => '[0-9]+']);;
+
+
+
+
     //测试路由
-    Route::get('/backend/novel/{name}_{id}.html','backend\NovelController@idbyname')->where(['name' => '[a-z]+', 'id' => '[0-9]+']);
+    //Route::get('/backend/novel/{name}_{id}.html','backend\NovelController@idbyname')->where(['name' => '[a-z]+', 'id' => '[0-9]+']);
 
 
 

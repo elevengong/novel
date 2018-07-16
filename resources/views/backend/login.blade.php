@@ -27,7 +27,7 @@
 <div class="header"></div>
 <div class="loginWraper">
   <div id="loginform" class="loginBox">
-    <form class="form form-horizontal" action="" method="post">
+    <form class="form form-horizontal" action="#" method="post">
       {{csrf_field()}}
 
       <div class="row cl">
@@ -56,7 +56,7 @@
       </div>
       <div class="row cl">
         <div class="formControls col-xs-8 col-xs-offset-3">
-          <input name="" type="submit" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">
+          <input name="" id="login" type="button" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">
           <input name="" type="reset" class="btn btn-default radius size-L" value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;">
         </div>
       </div>
@@ -68,15 +68,9 @@
 <script type="text/javascript" src="{{asset('/resources/views/backend/lib/layer/2.4/layer.js')}}"></script>
 <script type="text/javascript" src="{{asset('/resources/views/backend/static/h-ui/js/H-ui.min.js')}}"></script>
 
-@if(isset($msg))
-  {
-<script>
-  $(function(){
-      layer.msg('{{$msg}}',{icon:1,time:2000});
-  })
-</script>
-}
-@endif
+<script type="text/javascript" src="{{asset('/resources/views/backend/js/login.js')}}"></script>
+
+
 
 </body>
 </html>

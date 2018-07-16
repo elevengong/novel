@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 use Overtrue\Pinyin\Pinyin;
 use Symfony\Component\Console\Input\InputArgument;
 
-class CategoryController extends Controller
+class CategoryController extends BackendController
 {
     //get 列表页 backend/category
     public function index(){

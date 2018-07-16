@@ -54,6 +54,8 @@
 	<script type="text/javascript" src="{{asset('/resources/views/backend/lib/datatables/1.10.0/jquery.dataTables.min.js')}}"></script>
 	<script type="text/javascript" src="{{asset('/resources/views/backend/lib/laypage/1.2/laypage.js')}}"></script>
 
+
+	<script type="text/javascript" src="{{asset('/resources/views/backend/js/category.js')}}"></script>
 	<script type="text/javascript">
 		/*产品-添加*/
         function product_add(title,url){

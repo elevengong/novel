@@ -3,14 +3,12 @@
 namespace App\Http\Controllers\backend;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Crypt;
-use Illuminate\Support\Facades\DB;
-use Illuminate\View\View;
 use App\Model\Admin;
+use Illuminate\Http\Response;
 
 //require_once 'resources/org/code/svcode.php';
-class LoginController extends Controller
+class LoginController extends BackendController
 {
     public function login(Request $request){
         if($request->isMethod('post'))
@@ -18,7 +16,6 @@ class LoginController extends Controller
             $name = request()->input('name');
             $pwd = request()->input('pwd');
             $code = request()->input('code');
-            $data = array();
             //验证
             if(!empty($name) or !empty($pwd) or !empty($code))
             {
@@ -32,40 +29,38 @@ class LoginController extends Controller
                         $store_pwd = Crypt::decrypt($result['0']['pwd']);
                         if($store_pwd == $pwd)
                         {
-                            session(['admin' => $name]);
-                            return redirect('/backend/index');
+                            session(['admin' => $name, 'admin_id' => $result[0]['a_id']]);
+                            $reData['status'] = 1;
+                            $reData['msg'] = "登陆成功!";
 
                         }else{
-                            $data['msg'] = "帐号或者密码错误!";
-                            return view('backend.login',['msg' => $data['msg']]);
+                            $reData['status'] = 0;
+                            $reData['msg'] = "帐号或者密码错误!";
                         }
                     }else{
-                        $data['msg'] = "帐号或者密码错误!";
-                        return view('backend.login',['msg' => $data['msg']]);
+                        $reData['status'] = 0;
+                        $reData['msg'] = "帐号或者密码错误!";
                     }
                 }else{
-                    $data['msg'] = "验证码错误!";
-                    return view('backend.login',['msg' => $data['msg']]);
+                    $reData['status'] = 0;
+                    $reData['msg'] = "验证码错误!";
                 }
 
             }else{
-                $data['msg'] = "帐号或者密码或者验证码都不能为空!";
-                return view('backend.login',['msg' => $data['msg']]);
-//                $pdo = DB::connection()->getpdo();
-//                dd($pdo);
-//                $admin = DB::table('admin')->where('a_id',1)->get();
-//                dd($admin);
+                $reData['status'] = 0;
+                $reData['msg'] = "帐号或者密码或者验证码都不能为空!";
             }
+            //print_r($reData);exit;
+
+            echo json_encode($reData);
+
         }else{
             return view('backend.login');
         }
-
-
-
     }
 
-    public function logout(){
-        session(['admin' => '']);
+    public function logout(Request $request){
+        $this->deleteAllSession($request);
         return redirect('/backend/login');
     }
 

@@ -22,8 +22,8 @@
                         <th width="30">小说分类</th>
                         <th width="20">小说作者</th>
                         <th width="100">最新章节</th>
-                        <th width="10">显示</th>
                         <th width="10">状态</th>
+                        <th width="10"></th>
                         <th width="10">操作</th>
                     </tr>
                     </thead>
@@ -32,14 +32,14 @@
                     @foreach($datas->items() as $data)
                         <tr class="text-c va-m">
                             <td>{{$data->n_id}}</td>
-                            <td class="text-l">{{$data->novel_cover_path}}</td>
+                            <td class="text-l"><img src="{{$data->novel_cover_path}}" width="50px;"\></td>
                             <td><a onClick="novel_show('{{$data->novel_name}}','product-show.html','10001')" href="javascript:;">{{$data->novel_name}}</a></td>
                             <td class="text-l">{{$data->novel_intro}}</td>
                             <td class="text-l">{{$data->c_name}}</td>
                             <td class="text-l">{{$data->author}}</td>
                             <td class="text-l">{{$data->lastchapter}}</td>
-                            <td class="text-l">{{$data->finish}}</td>
-                            <td class="text-l">{{$data->show}}</td>
+                            <td class="text-l">@if($data->finish)完结@else未完结@endif</td>
+                            <td class="text-l">@if($data->show)显示@else不显示@endif</td>
                             <td class="td-manage">
                                 <a style="text-decoration:none" class="ml-5" onClick="product_edit('作者编辑','/backend/novel/{{$data->n_id}}/edit')" href="javascript:;" title="编辑">
                                     <i class="Hui-iconfont">&#xe6df;</i></a>
