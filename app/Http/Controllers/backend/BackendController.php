@@ -46,7 +46,7 @@ class BackendController extends Controller
             {
                 $destinationPath =  $this->author_cover_path;
             }else{
-                $destinationPath =  $this->author_novel_path;
+                $destinationPath =  $this->novel_cover_path;
             }
 
             $extension = $file->getClientOriginalExtension();

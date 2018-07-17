@@ -45,16 +45,17 @@ class AuthorController extends BackendController
             $result = Author::where('author_id',$author_id)->update($data);
             if($result)
             {
-                $ReData['msg'] = "修改成功!";
                 $ReData['status'] = 1;
+                $ReData['msg'] = "修改成功!";
 
             }else{
+                $ReData['status'] = 0;
                 $ReData['msg'] = "修改失败!";
-                $ReData['status'] = 1;
             }
             echo json_encode($ReData);
         }else{
             $author = Author::where('author_id',$author_id)->get();
+            //echo Author::where('author_id',$author_id)->toSql();
             return view('backend.authoredit',['data' => $author[0]]);
         }
 

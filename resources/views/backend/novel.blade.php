@@ -15,15 +15,16 @@
                 <table class="table table-border table-bordered table-bg table-hover table-sort">
                     <thead>
                     <tr class="text-c">
-                        <th width="40">ID</th>
+                        <th width="20">ID</th>
                         <th width="40">图片</th>
-                        <th width="40">小说名</th>
+                        <th width="50">小说名</th>
+                        <th width="50">拼音</th>
                         <th width="100">小说介绍</th>
                         <th width="30">小说分类</th>
                         <th width="20">小说作者</th>
                         <th width="100">最新章节</th>
                         <th width="10">状态</th>
-                        <th width="10"></th>
+                        <th width="10">前台显示</th>
                         <th width="10">操作</th>
                     </tr>
                     </thead>
@@ -33,7 +34,8 @@
                         <tr class="text-c va-m">
                             <td>{{$data->n_id}}</td>
                             <td class="text-l"><img src="{{$data->novel_cover_path}}" width="50px;"\></td>
-                            <td><a onClick="novel_show('{{$data->novel_name}}','product-show.html','10001')" href="javascript:;">{{$data->novel_name}}</a></td>
+                            <td><a onClick="novel_show('{{$data->novel_name}}','/backend/novel/{{$data->n_id}}/show')" href="javascript:;">{{$data->novel_name}}</a></td>
+                            <td class="text-l">{{$data->novel_name_pinyin}}</td>
                             <td class="text-l">{{$data->novel_intro}}</td>
                             <td class="text-l">{{$data->c_name}}</td>
                             <td class="text-l">{{$data->author}}</td>
@@ -79,7 +81,7 @@
             layer.full(index);
         }
 
-        function product_show(title,url){
+        function novel_show(title,url){
             var index = layer.open({
                 type: 2,
                 title: title,
