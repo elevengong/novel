@@ -56,7 +56,7 @@ Route::group(['middleware' => ['web','admin.login']], function () {
     Route::any('/backend/novel', 'backend\NovelController@index');
     Route::any('/backend/novel/{novel_id}/edit', 'backend\NovelController@edit')->where(['novel_id' => '[0-9]+']);
     Route::get('/backend/novel/{novel_id}/show', 'backend\NovelController@show')->where(['novel_id' => '[0-9]+']);;
-    Route::get('/backend/novel/{chapter_id}/chaptershow', 'backend\NovelController@chaptershow')->where(['chapter_id' => '[0-9]+']);;
+    Route::get('/backend/novel/{novel_id}_{chapter_id}/chaptershow', 'backend\NovelController@chaptershow')->where(['chapter_id' => '[0-9]+'], ['novel_id' => '[0-9]+']);;
 
     //上传图片
     Route::any('/backend/uploadphoto/{type}','backend\BackendController@uploadphoto')->where(['type' => '[0-9]+']);;

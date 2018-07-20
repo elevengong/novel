@@ -19,7 +19,7 @@
             <div class="mt-20">
                 <ul>
                     @foreach($chapters as $chapter)
-                        <li><a href="javascript:" onclick="chapter_show('{{$chapter['chapter_name']}}','/backend/novel/{{$chapter['chapter_id']}}/chaptershow')">{{$chapter['chapter_name']}}</a></li>
+                        <li><a href="javascript:" onclick="chapter_show('{{$chapter['chapter_name']}}','/backend/novel/{{$novel_id}}_{{$chapter['chapter_id']}}/chaptershow')">{{$chapter['chapter_name']}}</a></li>
                     @endforeach
                 </ul>
 
@@ -41,7 +41,6 @@
     <script type="text/javascript">
 
         function chapter_show(title,url){
-            alert("aaa");
             var index = layer.open({
                 type: 2,
                 title: title,

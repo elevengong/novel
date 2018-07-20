@@ -73,13 +73,24 @@ class NovelController extends BackendController
 
     }
 
-    public function show($n_id){
-        $chapters = Chapter::where('novel_id',$n_id)->orderBy('chapter_order','asc')->get()->toArray();
-        return view('backend.novelshow',['chapters' => $chapters]);
+    public function show($novel_id){
+        $chapters = Chapter::select('chapter_name','chapter_id')->where('novel_id',$novel_id)->orderBy('chapter_order','asc')->get()->toArray();
+        return view('backend.novelshow',compact('chapters','novel_id'));
     }
 
-    public function chaptershow($chapter_id){
-        echo "chaptershow";exit;
+    public function chaptershow($novel_id,$chapter_id){
+        $novelData = Novel::select('postdate')->find($novel_id)->toArray();
+        //通过小说的postdate,novel_id,chapter_id这三个计算出该小说章节的位置
+        $chapterTxt = resource_path('novelchapter').DIRECTORY_SEPARATOR.date('Ymd',$novelData['postdate']).DIRECTORY_SEPARATOR.$novel_id.DIRECTORY_SEPARATOR. $chapter_id.".txt";;
+
+        $txtContent = '';
+        $myfile = fopen($chapterTxt, "r") or die("Unable to open file!");
+        while(!feof($myfile)) {
+            $txtContent = $txtContent.fgets($myfile);
+        }
+        fclose($myfile);
+        echo $txtContent;
+
 
     }
 
