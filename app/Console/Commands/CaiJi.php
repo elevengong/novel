@@ -55,10 +55,14 @@ class CaiJi extends Command
         $rules_1 = [
             'link' => ['.l ul li .s2 a','href'],
             'author' => ['.l ul li .s4', 'text'],
-            'novel' => ['.l ul li .s2','text']
+            'novel' => ['.l ul li .s2','text'],
+            'category' => ['.l ul li .s1','text']
         ];
         $ql = QueryList::get($this->caiji_url)->rules($rules_1)->encoding('UTF-8','GB2312')->removeHead()->query();
         $linkDatas = $ql->getData();
+        //print_r($linkDatas[0]);
+
+
 
         if(!empty($linkDatas))
         {
@@ -78,6 +82,7 @@ class CaiJi extends Command
                 $ql = QueryList::get($linkDatas[$p]['link'])->rules($rules_2)->encoding('UTF-8','GB2312')->removeHead()->query();
 
                 $chapterDatas = $ql->getData();
+                //print_r($chapterDatas);exit;
 
                 if(!empty($chapterDatas))
                 {
@@ -110,9 +115,13 @@ class CaiJi extends Command
                                 {
                                     if($chapterDatas[$j]['chaptername'] != $lastChapterObj->chapter_name)
                                     {
-                                        $newChapterDataArray[$k]['chaptername'] = $chapterDatas[$j]['chaptername'];
-                                        $newChapterDataArray[$k]['chapterlink'] = $chapterDatas[$j]['chapterlink'];
-                                        $k++;
+                                        if( isset($chapterDatas[$j]['chapterlink']))
+                                        {
+                                            $newChapterDataArray[$k]['chaptername'] = $chapterDatas[$j]['chaptername'];
+                                            $newChapterDataArray[$k]['chapterlink'] = $chapterDatas[$j]['chapterlink'];
+                                            $k++;
+                                        }
+
                                     }else{
                                         break;
                                     }
@@ -153,10 +162,14 @@ class CaiJi extends Command
                         }//if($novelFinishStatus['finish']==0)
                         if($novelInfo['finish']==3)
                         {
+                            $replaceStr = array('[',']');
+                            $categoryName = trim(str_replace($replaceStr,'',$linkDatas[$p]['category']));
+                            $categoryId = $this->getCategoryIdByCategoryName($categoryName);
+
                             echo "finish=3";
                             //入库
                             //入novel数据库
-                            $novelData['c_id'] = 1;
+                            $novelData['c_id'] = $categoryId;
                             $novelData['novel_name'] = $linkDatas[$p]['novel'];
                             $novelData['novel_name_pinyin'] = $this->translatePinyin($linkDatas[$p]['novel']);
                             $novelData['initial'] = substr( $novelData['novel_name_pinyin'], 0, 1 );
@@ -334,6 +347,35 @@ class CaiJi extends Command
 
     }
 
+    //通过小说类型名获取小说分类Id
+    private function getCategoryIdByCategoryName($categoryName){
+        $categoryId = 7;
+        switch ($categoryName)
+        {
+            case '玄幻小说':
+                $categoryId = 1;
+                break;
+            case '修真小说':
+                $categoryId = 2;
+                break;
+            case '都市小说':
+                $categoryId = 3;
+                break;
+            case '穿越小说':
+                $categoryId = 4;
+                break;
+            case '网游小说':
+                $categoryId = 5;
+                break;
+            case '科幻小说':
+                $categoryId = 6;
+                break;
+            default:
+                $categoryId = 7;
+
+        }
+        return $categoryId;
+    }
 
 
 

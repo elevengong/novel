@@ -19,7 +19,12 @@ class NovelController extends BackendController
             $novels = Novel::where('novel_name','like',$searchWord.'%')->paginate($this->pageNum);
 
         }else{
-            $novels = Novel::paginate($this->pageNum);
+            //$novels = Novel::paginate($this->pageNum);
+            $novels = Novel::select('novel.*','category.c_name','author.author')->leftJoin('category', function($join) {
+                $join->on('novel.c_id', '=', 'category.c_id');
+            })->leftJoin('author', function ($join){
+                $join->on('novel.author_id', '=', 'author.author_id');
+            })->orderBy('novel.n_id','desc')->paginate($this->pageNum);
 
             //做主键做索引的分页
             //select id,title from collect where id>=(select id from collect order by id limit 90000,1) limit 10;
