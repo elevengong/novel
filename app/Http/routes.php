@@ -15,7 +15,9 @@
 //--------------------------------------start前端----------------------------------
 Route::get('/', 'frontend\IndexController@index');
 Route::get('/index.html', 'frontend\IndexController@index');
-
+Route::get('/category','frontend\IndexController@category');
+Route::get('/novel','frontend\IndexController@novel');
+Route::get('/chapter','frontend\IndexController@chapter');
 
 
 
@@ -58,8 +60,13 @@ Route::group(['middleware' => ['web','admin.login']], function () {
     Route::get('/backend/novel/{novel_id}/show', 'backend\NovelController@show')->where(['novel_id' => '[0-9]+']);;
     Route::get('/backend/novel/{novel_id}_{chapter_id}/chaptershow', 'backend\NovelController@chaptershow')->where(['chapter_id' => '[0-9]+'], ['novel_id' => '[0-9]+']);;
 
+    Route::get('/backend/system/friendlink', 'backend\SystemController@friendlink');
+    Route::any('/backend/system/friendlinkadd', 'backend\SystemController@friendlinkadd');
+    Route::delete('/backend/system/friendlinkdel/{id}', 'backend\SystemController@friendlinkdel')->where(['id' => '[0-9]+']);
+    Route::any('/backend/system/friendlinkedit/{id}', 'backend\SystemController@friendlinkedit')->where(['id' => '[0-9]+']);;
+
     //上传图片
-    Route::any('/backend/uploadphoto/{type}','backend\BackendController@uploadphoto')->where(['type' => '[0-9]+']);;
+    Route::any('/backend/uploadphoto/{type}','backend\BackendController@uploadphoto')->where(['type' => '[0-9]+']);
 
 
 
