@@ -79,9 +79,10 @@
                     success:function(data){
                         if(data.status == 1)
                         {
-                            window.parent.location.reload();
-                            window.location.close();
-                            layer.msg(data.msg);
+                            layer.msg(data.msg,function(){
+                                window.parent.location.reload();
+                                window.location.close();
+                            });
                         }else{
                             layer.msg(data.msg);
                         }

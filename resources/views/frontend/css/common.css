@@ -231,16 +231,16 @@ element.style {
 }
 
 .header_logo a {
-    background: url(../image/logo.gif) no-repeat scroll;
+    background: url(../image/logo1.jpg) no-repeat scroll;
     display: block;
-    width: 250px;
-    height: 60px;
+    width: 140px;
+    height: 70px;
     float: left;
     text-indent: -9999px;
 }
 .header_search {
     float: left;
-    margin: 20px auto auto 30px;
+    margin: 20px auto auto 130px;
     overflow: hidden;
     width: 500px;
 }
@@ -278,18 +278,22 @@ a:hover{
 }
 
 .box_con {
-    border: 2px solid #88C6E5;
+    border: 1px solid #ddc2e4;
     margin: 10px auto;
     line-height: 100%;
-    width: 976px;
+    width: 978px;
     overflow: hidden;
 }
 
+.box_con2{
+    margin:0 auto 10px;
+    border-top:none;
+}
+
 .con_top {
-    background-color: #E1ECED;
     height: 40px;
     line-height: 40px;
-    border-bottom: 1px solid #88C6E5;
+    border-bottom: 1px solid #ddc2e4;
     width: 100%;
     padding-left: 10px;
 }
@@ -301,7 +305,6 @@ a:hover{
 }
 
 #fmimg {
-    background-color: #E1ECED;
     float: left;
     padding: 12px;
     margin: 12px 12px 0;
@@ -344,8 +347,8 @@ a:hover{
 
 #info .intro {
     clear: both;
-    border-top: 1px dashed #88C6E5;
-    border-bottom: 1px dashed #88C6E5;
+    border-top: 1px dashed #ddc2e4;
+    border-bottom: 1px dashed #ddc2e4;
     line-height: 20px;
     padding: 5px 0;
     font-size: 12px;
@@ -400,7 +403,7 @@ a:hover{
 }
 
 #list dt {
-    background: #C3DFEA;
+    background: #e5d0ea;
     display: inline;
     line-height: 28px;
     float: left;
@@ -436,8 +439,8 @@ a:hover{
 }
 
 .footer_link {
-    width: 100%;
-    border-bottom: 1px dashed #A6D3E8;
+    width: 980px;
+    border-bottom: 1px dashed #ddc2e4;
     height: 30px;
     line-height: 30px;
     overflow: hidden;
@@ -470,7 +473,7 @@ a:hover{
 }
 
 .bookname {
-    border-bottom: 1px dashed #88C6E5;
+    border-bottom: 1px dashed #ddc2e4;
     line-height: 30px;
     padding-top: 10px;
     margin-bottom: 10px;
@@ -531,7 +534,87 @@ a:hover{
     text-align: center;
 }
 
+.pages{
+    width:100%;
+    text-align: center;
+}
 
+.pages ul li{
+    border-bottom:none !important;
+    width:40px;
+    float: left;
+
+}
+
+.pagination{
+    float: right;
+}
+
+.pages ul .active span, .pages ul .disabled span{
+    float: none !important;
+}
+
+.box_con #list dl{
+    width:100%;
+}
+
+#updatelist{
+    border: 1px solid #ddc2e4;
+    float: left;
+    width: 978px;
+    margin-top: 10px;
+}
+#updatelist h2 {
+    margin: 0px;
+    overflow: hidden;
+    padding: 0px 0px 0px 10px;
+    background-color: #F7F7F7;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    font-weight: bold;
+    border-bottom: solid 1px #DDDDDD;
+}
+
+#updatelist ul {
+    padding: 0px 10px 10px 10px;
+}
+
+#updatelist ul li {
+    padding: 5px 0px 0px 0px;
+    border-bottom: solid 1px #DDDDDD;
+    height: 25px;
+    line-height: 25px;
+    overflow: hidden;
+}
+
+#updatelist ul li .s1 {
+    width: 75px;
+}
+
+#updatelist ul li span {
+    float: left;
+    display: inline-block;
+}
+
+#updatelist ul li .s2 {
+    width: 265px;
+}
+
+#updatelist ul li .s3 {
+    width: 345px;
+}
+
+#updatelist ul li .s4 {
+    width: 149px;
+    text-align: center;
+}
+
+#updatelist ul li .s5 {
+    color: #B3B3B3;
+    float: right;
+    text-align: right;
+}
 
 
 

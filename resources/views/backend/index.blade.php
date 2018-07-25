@@ -58,6 +58,7 @@
 </header>
 <aside class="Hui-aside">
 	<div class="menu_dropdown bk_2">
+
 		<dl id="menu-article">
 			<dt><i class="Hui-iconfont">&#xe616;</i> 小说管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
@@ -65,27 +66,36 @@
 					<li><a data-href="{{url('/backend/category')}}" data-title="分类管理" href="javascript:void(0)">分类管理</a></li>
 					<li><a data-href="{{url('/backend/author')}}" data-title="作者管理" href="javascript:void(0)">作者管理</a></li>
 					<li><a data-href="{{url('/backend/novel')}}" data-title="小说管理" href="javascript:void(0)">小说管理</a></li>
-			</ul>
-		</dd>
-	</dl>
+			    </ul>
+		    </dd>
+	    </dl>
+
+		<dl id="menu-product">
+			<dt><i class="Hui-iconfont">&#xe620;</i> 前端管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li><a data-href="{{url('/backend/frontend/footer')}}" data-title="修改footer" href="javascript:void(0)">footer修改</a></li>
+				</ul>
+			</dd>
+		</dl>
+
 		</dl>
 		<dl id="menu-system">
 		<dt><i class="Hui-iconfont">&#xe62e;</i> 系统管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="{{url('/backend/system/friendlink')}}" data-title="分类管理" href="javascript:void(0)">友情链接</a></li>
+					<li><a data-href="{{url('/backend/system/friendlink')}}" data-title="友情链接" href="javascript:void(0)">友情链接</a></li>
 				</ul>
 			</dd>
 		</dl>
+
+
 
 		{{--<dl id="menu-picture">--}}
 			{{--<dt><i class="Hui-iconfont">&#xe613;</i> 图片管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>--}}
 
 	{{--</dl>--}}
-		{{--<dl id="menu-product">--}}
-			{{--<dt><i class="Hui-iconfont">&#xe620;</i> 产品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>--}}
 
-	{{--</dl>--}}
 		{{--<dl id="menu-comments">--}}
 			{{--<dt><i class="Hui-iconfont">&#xe622;</i> 评论管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>--}}
 

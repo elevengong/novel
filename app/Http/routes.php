@@ -15,9 +15,15 @@
 //--------------------------------------start前端----------------------------------
 Route::get('/', 'frontend\IndexController@index');
 Route::get('/index.html', 'frontend\IndexController@index');
-Route::get('/category','frontend\IndexController@category');
-Route::get('/novel','frontend\IndexController@novel');
-Route::get('/chapter','frontend\IndexController@chapter');
+
+Route::get('/{pinyin}/{c_id}','frontend\IndexController@category')->where(['c_id' => '[0-9]+']);
+Route::get('/novel/{pinyin}/{n_id}','frontend\IndexController@novel')->where(['n_id' => '[0-9]+']);
+Route::get('/read/{pinyin}/{chapter_id}.html','frontend\IndexController@chapter')->where(['chapter_id' => '[0-9]+']);
+Route::get('/novel/{n_id}/download','frontend\IndexController@noveldownload')->where(['n_id' => '[0-9]+']);
+
+Route::get('/updatelist', 'frontend\IndexController@updatelist');
+Route::get('/complete', 'frontend\IndexController@complete');
+Route::any('/search', 'frontend\IndexController@search');
 
 
 
@@ -63,7 +69,10 @@ Route::group(['middleware' => ['web','admin.login']], function () {
     Route::get('/backend/system/friendlink', 'backend\SystemController@friendlink');
     Route::any('/backend/system/friendlinkadd', 'backend\SystemController@friendlinkadd');
     Route::delete('/backend/system/friendlinkdel/{id}', 'backend\SystemController@friendlinkdel')->where(['id' => '[0-9]+']);
-    Route::any('/backend/system/friendlinkedit/{id}', 'backend\SystemController@friendlinkedit')->where(['id' => '[0-9]+']);;
+    Route::any('/backend/system/friendlinkedit/{id}', 'backend\SystemController@friendlinkedit')->where(['id' => '[0-9]+']);
+
+    Route::any('/backend/frontend/footer', 'backend\StaticController@footer');
+
 
     //上传图片
     Route::any('/backend/uploadphoto/{type}','backend\BackendController@uploadphoto')->where(['type' => '[0-9]+']);
